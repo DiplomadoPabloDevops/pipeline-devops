@@ -12,7 +12,7 @@ def call(){
         choice choices: ['gradle', 'maven'], description: 'Indicar herramienta de construcciÃ³n', name: 'buildTool'
     }   
     environment{
-        STAGE = ""
+        STAGE = ''
             
     }
     stages {
