@@ -51,7 +51,7 @@ void runCd(String[] stagesToRun) {
         stage(runDownloadedJar) {
             CURRENT_STAGE = runDownloadedJar
             figlet CURRENT_STAGE
-            bat 'java -jar DevOpsUsach2020-0.0.1.jar &'
+            bat 'start /min java -jar DevOpsUsach2020-0.0.1.jar &'
             bat "ping 127.0.0.1 -n 6 > nul"
         }
     }
@@ -147,14 +147,14 @@ void runCi(String[] stagesToRun) {
         stage(stageTestRun) {
             CURRENT_STAGE = stageTestRun
             bat  'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
+        }
     }
-
     if (currentStages.contains(stageNexus)) {
         stage(stageNexus) {
             CURRENT_STAGE = stageNexus
             nexusPublisher nexusInstanceId: NEXUS_INSTANCE_ID,
-        nexusRepositoryId: NEXUS_REPOSITORY,
-        packages: [
+            nexusRepositoryId: NEXUS_REPOSITORY,
+            packages: [
             [
                 $class: 'MavenPackage',
                 mavenAssetList: [
@@ -167,7 +167,7 @@ void runCi(String[] stagesToRun) {
                     version: '0.0.1'
                 ]
             ]
-        ]
+            ]
         }
     }
 }
