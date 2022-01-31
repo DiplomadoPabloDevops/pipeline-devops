@@ -19,7 +19,7 @@ def call(String[] insertStages){
         stageNexus
     ]
 
-    String[] insertStages = []
+    String[] runStages = []
 
     if (insertStages.size() == 1 && insertStages[0] == '') {
         runStages = stages
