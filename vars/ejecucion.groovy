@@ -13,19 +13,20 @@ def call(){
     }
     parameters {
         choice choices: ['gradle', 'maven'], description: 'Indicar herramienta de construccion', name: 'buildTool'
+        string defaultValue: '', description: 'Stages a ejecutar, separar por ;', name: 'stage'
     }   
 
     stages {
         stage('Pipeline') {
             steps {
                 script {
-                     
-                        if (params.buildTool == 'gradle') {
-                            gradle.call()
-                        }
-                        else{
-                            maven.call()
-                        }     
+                    String[] stepsChoices = params.stage.split(';')
+                    if (params.buildTool == 'gradle') {
+                        gradle.call(stepsChoices)
+                    }
+                    else{
+                        maven.call(stepsChoices)
+                    }     
                 }
             }
         }
