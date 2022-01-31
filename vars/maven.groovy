@@ -119,6 +119,7 @@ void runCi(String[] stagesToRun) {
     if (currentStages.contains(stageBuild)) {
         stage(stageBuild) {
             CURRENT_STAGE = stageBuild
+            figlet CURRENT_STAGE
             bat  "./mvnw.cmd clean compile -e"
             bat  "./mvnw.cmd clean test -e"
             bat  "./mvnw.cmd clean package -e"
@@ -128,6 +129,7 @@ void runCi(String[] stagesToRun) {
     if (currentStages.contains(stageSonar)) {
         stage(stageSonar) {
             CURRENT_STAGE = stageSonar
+            figlet CURRENT_STAGE
             def scannerHome = tool 'sonar-scanner';
             withSonarQubeEnv('sonar-scanner') {
                 bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-maven2 -Dsonar.sources=src/main/java/  -Dsonar.java.binaries=build -Dsonar.projectBaseDir=${env.WORKSPACE} -Dsonar.login=8e8236752890bf7bb18bc071593360e27a3d0346"
@@ -138,6 +140,7 @@ void runCi(String[] stagesToRun) {
     if (currentStages.contains(stageRun)) {
         stage(stageRun) {
             CURRENT_STAGE = stageRun
+            figlet CURRENT_STAGE
             bat  "start /min mvnw.cmd spring-boot:run &"
             bat "ping 127.0.0.1 -n 6 > nul"
         }
@@ -146,12 +149,14 @@ void runCi(String[] stagesToRun) {
     if (currentStages.contains(stageTestRun)) {
         stage(stageTestRun) {
             CURRENT_STAGE = stageTestRun
+            figlet CURRENT_STAGE
             bat  'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
         }
     }
     if (currentStages.contains(stageNexus)) {
         stage(stageNexus) {
             CURRENT_STAGE = stageNexus
+            figlet CURRENT_STAGE
             nexusPublisher nexusInstanceId: NEXUS_INSTANCE_ID,
             nexusRepositoryId: NEXUS_REPOSITORY,
             packages: [
