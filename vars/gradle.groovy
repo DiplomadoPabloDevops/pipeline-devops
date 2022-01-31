@@ -53,8 +53,9 @@ void runCd(String[] stagesToRun) {
             figlet CURRENT_STAGE
             bat 'start /min java -jar DevOpsUsach2020-0.0.1.jar &'
             bat "ping 127.0.0.1 -n 6 > nul"
-        
+        }
     }
+
 
     if (currentStages.contains(rest)) {
         stage(rest) {
