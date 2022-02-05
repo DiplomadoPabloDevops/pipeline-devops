@@ -68,7 +68,7 @@ void runCd(String[] stagesToRun) {
     
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
-            bat "git diff main"
+            bat "git diff origin/main"
         }
     }
         
