@@ -68,15 +68,16 @@ void runCd(String[] stagesToRun) {
     
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
-            sshagent(['github-password']) {
-                git branch: 'release', credentialsId: 'github-password', url: 'https://github.com/DiplomadoPabloDevops/ejemplo_gradle'
-                bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
-                bat "git fetch --no-tags"
-                bat " git diff origin/main origin/${env:BRANCH_NAME}"
+            withCredentials([usernamePassword(credentialsId: 'github-password', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 bat "git checkout origin/main"
                 bat "git merge origin/${env:BRANCH_NAME}"
                 bat "git push origin/main"
             }
+
+                bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
+                bat "git fetch --no-tags"
+                bat " git diff origin/main origin/${env:BRANCH_NAME}"
+                
         }
     }
         
