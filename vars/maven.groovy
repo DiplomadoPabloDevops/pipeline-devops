@@ -17,12 +17,14 @@ void runCd(String[] stagesToRun) {
     String runDownloadedJar = 'runDownloadedJar'
     String rest = 'rest'
     String nexusCD = 'nexusCD'
+    String gitdiff = 'gitdiff'
 
     String[] stages = [
         downloadNexus,
         runDownloadedJar,
         rest,
-        nexusCD
+        nexusCD,
+        gitdiff
     ]
 
     String[] currentStages = []
