@@ -71,6 +71,10 @@ void runCd(String[] stagesToRun) {
             bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
             bat "git fetch --no-tags"
             bat " git diff origin/main origin/${env:BRANCH_NAME}"
+            bat "git checkout origin/main"
+            bat "git checkout origin/${env:BRANCH_NAME}"
+            bat "git merge origin/${env:BRANCH_NAME}"
+            bat "git push"
         }
     }
         
