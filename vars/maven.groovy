@@ -72,9 +72,8 @@ void runCd(String[] stagesToRun) {
             bat "git fetch --no-tags"
             bat " git diff origin/main origin/${env:BRANCH_NAME}"
             bat "git checkout origin/main"
-            bat "git checkout origin/${env:BRANCH_NAME}"
             bat "git merge origin/${env:BRANCH_NAME}"
-            bat "git push"
+            bat "git push origin/main"
         }
     }
         
