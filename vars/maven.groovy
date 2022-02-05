@@ -68,7 +68,7 @@ void runCd(String[] stagesToRun) {
     
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
-            bat " git diff --name-only origin/main--origin/${env:BRANCH_NAME}"
+            bat " git diff --name-only origin/main origin/${env:BRANCH_NAME}"
         }
     }
         
