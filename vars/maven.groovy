@@ -68,7 +68,7 @@ void runCd(String[] stagesToRun) {
     
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
-            bat "git branch ${env.GIT_BRANCH}, credentialsId: 'github-password', url: 'https://github.com/DiplomadoPabloDevops/ejemplo_gradle'"
+            bat "git branch ${env.GIT_BRANCH}"
             bat "git diff"
         }
     }
