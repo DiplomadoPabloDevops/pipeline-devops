@@ -70,7 +70,8 @@ void runCd(String[] stagesToRun) {
         stage('gitdiff') {
             withCredentials([usernamePassword(credentialsId: 'github-password', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
-                bat "git checkout main"
+                bat "git fetch --no-tags"
+                bat "git checkout origin/main"
                 bat "git merge origin/${env:BRANCH_NAME}"
                 bat ("git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${GIT_URL}")
             }
