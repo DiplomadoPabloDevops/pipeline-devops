@@ -68,9 +68,7 @@ void runCd(String[] stagesToRun) {
     
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
-            git url: "ssh://jenkins@your-git-repo:12345/your-git-project.git",
-            credentialsId: 'jenkins_ssh_key',
-            branch: release
+            git branch: 'release', credentialsId: 'github-password', url: 'https://github.com/DiplomadoPabloDevops/ejemplo_gradle'
             bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
             bat "git fetch --no-tags"
             bat " git diff origin/main origin/${env:BRANCH_NAME}"
