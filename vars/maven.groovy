@@ -69,7 +69,8 @@ void runCd(String[] stagesToRun) {
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
             withCredentials([usernamePassword(credentialsId: 'github-password', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                bat "git config --local credential.helper '!f() { echo username=\\${GIT_USERNAME}; echo password=\\${GIT_PASSWORD}; }; f'"
+                bat 'git config --global credential.helper cache'
+                bat 'git config --global push.default simple'
                 bat "git checkout origin/main"
                 bat "git merge origin/${env:BRANCH_NAME}"
                 bat "git push origin/main"
