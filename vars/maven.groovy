@@ -68,7 +68,7 @@ void runCd(String[] stagesToRun) {
     
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
-          bat "git diff main credentialsId: 'github-password', url: 'https://github.com/DiplomadoPabloDevops/ejemplo_gradle'" 
+          bat "git diff credentialsId: 'github-password', url: 'https://github.com/DiplomadoPabloDevops/ejemplo_gradle'" 
         }
     }
         
