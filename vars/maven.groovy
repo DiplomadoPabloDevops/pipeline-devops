@@ -69,12 +69,12 @@ void runCd(String[] stagesToRun) {
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
             withCredentials([usernamePassword(credentialsId: 'github-password', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                bat 'git config --global user.email "pablo.acm.ti@gmail.com"'
-                bat 'git config --global user.name "${GIT_USERNAME}"'
+                bat "git config --global user.email ${env:GIT_AUTHOR_EMAIL}"
+                bat "git config --global user.name ${env:GIT_AUTHOR_NAME}"
                 bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
                 bat "git checkout origin/main"
                 bat "git merge origin/${env:BRANCH_NAME}"
-                bat "git push origin HEAD:main"
+                bat "git push -f"
             }
 
                 bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
