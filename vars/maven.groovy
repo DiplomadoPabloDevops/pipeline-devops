@@ -73,7 +73,7 @@ void runCd(String[] stagesToRun) {
                 bat "git config --global user.name ${GIT_USERNAME}"
                 bat "git checkout origin/main"
                 bat "git merge origin/${env:BRANCH_NAME}"
-                bat "git push origin/main HEAD:main"
+                bat "git push"
             }
 
                 bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
