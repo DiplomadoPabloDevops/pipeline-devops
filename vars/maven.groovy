@@ -69,8 +69,8 @@ void runCd(String[] stagesToRun) {
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
             withCredentials([usernamePassword(credentialsId: 'github-password', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                bat 'git config --global credential.helper cache'
-                bat 'git config --global push.default simple'
+                bat "git config --global user.email ${GIT_USERNAME}"
+                bat "git config --global user.name ${GIT_USERNAME}"
                 bat "git checkout origin/main"
                 bat "git merge origin/${env:BRANCH_NAME}"
                 bat "git push origin/main"
