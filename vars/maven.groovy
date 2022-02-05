@@ -63,7 +63,11 @@ void runCd(String[] stagesToRun) {
             bat  'curl -X GET "http://localhost:8081/rest/mscovid/test?msg=testing"'
         }
     }
-
+    if (currentStages.contains('gitdiff') {
+        stage('gitdiff') {
+          bat "git diff main credentialsId: 'github-password', url: 'https://github.com/DiplomadoPabloDevops/ejemplo_gradle'" 
+        }
+    }
     if (currentStages.contains(nexusCD)) {
         stage(nexusCD) {
             CURRENT_STAGE = nexusCD
