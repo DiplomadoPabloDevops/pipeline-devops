@@ -75,14 +75,15 @@ void runCd(String[] stagesToRun) {
             println tag
             withCredentials([gitUsernamePassword(credentialsId: 'github-password',
                  gitToolName: 'default')]) {
-                bat "git fetch --no-tags"
+                bat "git fetch --all"
                 bat "git checkout origin/main"
                 bat "git merge origin/${env:BRANCH_NAME}"
                 bat 'git push origin HEAD:main'
+                bat "git tag -a ${tag} -m 'my version ${tag}'"
             }
 
                 bat "git config --add remote.origin.fetch +refs/heads/main:refs/remotes/origin/main"
-                bat "git fetch --no-tags"
+                bat "git fetch --all"
                 bat " git diff origin/main origin/${env:BRANCH_NAME}"
                 
         }
