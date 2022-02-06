@@ -68,6 +68,11 @@ void runCd(String[] stagesToRun) {
     
     if (currentStages.contains('gitdiff')) {
         stage('gitdiff') {
+            String branch = BRANCH_NAME
+            Integer inicio = branch.indexOf("v")
+            Integer last   = branch.size()
+            String tag = branch.substring(inicio, last)
+            println tag
             withCredentials([gitUsernamePassword(credentialsId: 'github-password',
                  gitToolName: 'default')]) {
                 bat "git fetch --no-tags"
