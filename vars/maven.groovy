@@ -82,6 +82,7 @@ void runCd(String[] stagesToRun) {
                 bat "git tag -d ${tag}"
                 bat "git tag -a ${tag} -m version${tag}"
                 bat "git push origin ${tag}"
+                bat "git push origin master --tags"
                 bat 'git push origin HEAD:main'
             }
 
