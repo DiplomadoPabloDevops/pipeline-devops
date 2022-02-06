@@ -76,7 +76,7 @@ void runCd(String[] stagesToRun) {
             withCredentials([gitUsernamePassword(credentialsId: 'github-password',
                  gitToolName: 'default')]) {
                 bat "git fetch --all"
-                bat "git checkout origin/main"
+                bat "git checkout main"
                 bat "git merge origin/${env:BRANCH_NAME}"
                 bat 'git push origin HEAD:main'
                 bat "git tag -a ${tag} -m 'my version ${tag}'"
