@@ -79,7 +79,7 @@ void runCd(String[] stagesToRun) {
                 bat "git fetch" 
                 bat "git checkout origin/main"
                 bat "git merge origin/${env:BRANCH_NAME}"
-                bat "git tag -a ${tag} -m 'my version ${tag}'"
+                bat "git tag -a ${tag}"
                 bat 'git push origin HEAD:main'
             }
 
